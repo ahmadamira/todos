@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        fetch('/todos')
+            .then(response => response.json())
+            .then(todos => {
+                const ul = document.getElementById('todos');
+                todos.forEach(todo => {
+                    const li = document.createElement('li');
+                    li.textContent = todo.title;
+                    ul.appendChild(li);
+                });
+            });
+    </script>
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <ul id="todos"></ul>
+    <img src="/image.webp">
+</body>
+
+</html>
