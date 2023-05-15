@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cors = require('cors')
 router.use(express.json());
+router.use(cors({
+    origin: "*",
+}))
 
 let todos = [
     {
@@ -68,7 +72,7 @@ router.post('/:id', validateTask, (req, res) => {
 
 
 router.put('/:id', validateTask, (req, res) => {
-    const id = req.params.id;
+    const id = +req.params.id;
     const { title, description, completed } = req.body;
     const index = todos.findIndex(todo => todo.id === id);
     if (index !== -1) {
